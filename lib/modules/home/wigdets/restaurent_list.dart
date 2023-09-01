@@ -3,7 +3,6 @@ import 'package:animation_wrappers/animations/faded_slide_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../utils/color.dart';
 import '../../restaurant_detail/view.dart';
 import '../logic.dart';
 
@@ -21,7 +20,8 @@ class _RestaurentListWidgetState extends State<RestaurentListWidget> {
       builder: (_homeLogic) => FadedSlideAnimation(
         child: SingleChildScrollView(
           child: Wrap(
-            children: List.generate(_homeLogic.restaurentShowList.length, (index) {
+            children:
+                List.generate(_homeLogic.restaurentShowList.length, (index) {
               return Padding(
                 padding: const EdgeInsets.fromLTRB(15, 30, 15, 0),
                 child: InkWell(

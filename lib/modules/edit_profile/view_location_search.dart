@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 import 'dart:convert';
 
-
 import '../sign_up/places_services.dart';
 
 class PlacesAutoComplete extends StatefulWidget {
@@ -69,27 +68,25 @@ class _PlacesAutoCompleteState extends State<PlacesAutoComplete> {
 
                 log('RESULT---->>>${result!.description.toString().split(', ')[2]}');
                 // This will change the text displayed in the TextField
-                if (result != null) {
-                  final placeDetails = await PlaceApiProvider(sessionToken)
-                      .getPlaceDetailFromId(result.placeId);
+                final placeDetails = await PlaceApiProvider(sessionToken)
+                    .getPlaceDetailFromId(result.placeId);
 
-                  await saveData(
-                      latLong: json.encode({
-                        'lat': placeDetails['lat'],
-                        'lng': placeDetails['lng']
-                      }),
-                      place: result.description);
+                await saveData(
+                    latLong: json.encode({
+                      'lat': placeDetails['lat'],
+                      'lng': placeDetails['lng']
+                    }),
+                    place: result.description);
 
-                  // latlong.value =
-                  //     await json.decode(await datastore.read("latlong"));
-                  // print("the lat long is ${latlong.value}");
-                  // print(latlong.value['lat']);
+                // latlong.value =
+                //     await json.decode(await datastore.read("latlong"));
+                // print("the lat long is ${latlong.value}");
+                // print(latlong.value['lat']);
 
-                  setState(() {
-                    // datastore.write("placename", result.description);
-                    // datastore.write("latlong", json.encode(placeDetails));
-                  });
-                }
+                setState(() {
+                  // datastore.write("placename", result.description);
+                  // datastore.write("latlong", json.encode(placeDetails));
+                });
               },
               decoration: const InputDecoration(
                 icon: SizedBox(
@@ -162,40 +159,40 @@ class AddressSearch extends SearchDelegate<Suggestion> {
           ? null
           : apiClient!.fetchSuggestions(
               query, Localizations.localeOf(context).languageCode),
-      builder: (context, AsyncSnapshot<List<Suggestion>> snapshot) => query ==
-              ''
-          ? Container(
-              padding: const EdgeInsets.all(16.0),
-              child: const Text('Enter your address'),
-            )
-          : snapshot.hasData
-              ? ListView.builder(
-                  itemBuilder: (context, index) => Container(
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 10),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10),
-                      // boxShadow: [
-                      //   BoxShadow(
-                      //     color: customThemeColor.withOpacity(0.19),
-                      //     blurRadius: 40,
-                      //     spreadRadius: 0,
-                      //     offset:
-                      //         const Offset(0, 22), // changes position of shadow
-                      //   ),
-                      // ],
-                    ),
-                    child: ListTile(
-                      title: Text(snapshot.data![index].description),
-                      onTap: () {
-                        close(context, snapshot.data![index]);
-                      },
-                    ),
-                  ),
-                  itemCount: snapshot.data!.length,
+      builder: (context, AsyncSnapshot<List<Suggestion>> snapshot) =>
+          query == ''
+              ? Container(
+                  padding: const EdgeInsets.all(16.0),
+                  child: const Text('Enter your address'),
                 )
-              : const SizedBox(child: Text('Loading...')),
+              : snapshot.hasData
+                  ? ListView.builder(
+                      itemBuilder: (context, index) => Container(
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 10),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                          // boxShadow: [
+                          //   BoxShadow(
+                          //     color: customThemeColor.withOpacity(0.19),
+                          //     blurRadius: 40,
+                          //     spreadRadius: 0,
+                          //     offset:
+                          //         const Offset(0, 22), // changes position of shadow
+                          //   ),
+                          // ],
+                        ),
+                        child: ListTile(
+                          title: Text(snapshot.data![index].description),
+                          onTap: () {
+                            close(context, snapshot.data![index]);
+                          },
+                        ),
+                      ),
+                      itemCount: snapshot.data!.length,
+                    )
+                  : const SizedBox(child: Text('Loading...')),
     );
   }
 }

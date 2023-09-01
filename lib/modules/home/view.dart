@@ -1,5 +1,4 @@
 import 'package:book_a_table/controllers/general_controller.dart';
-import 'package:book_a_table/modules/search/view.dart';
 import 'package:book_a_table/route_generator.dart';
 import 'package:book_a_table/widgets/custom_drawer.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';

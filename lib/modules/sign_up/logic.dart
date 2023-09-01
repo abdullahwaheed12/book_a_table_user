@@ -1,8 +1,9 @@
+// ignore_for_file: unused_local_variable
+
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
@@ -49,7 +50,6 @@ class SignUpLogic extends GetxController {
     log('-----------------OtpFunctionStartHere-----------------');
     FirebaseAuth _auth = FirebaseAuth.instance;
     _auth.verifyPhoneNumber(
-      
       phoneNumber: phone!,
       timeout: const Duration(seconds: 55),
       verificationCompleted: (AuthCredential credential) async {
@@ -64,6 +64,7 @@ class SignUpLogic extends GetxController {
       },
       codeAutoRetrievalTimeout: (String verificationId) {},
     );
+    return null;
   }
 
   verifyOTP(BuildContext context, var otp) async {
@@ -324,5 +325,4 @@ class SignUpLogic extends GetxController {
   }
 
   ///------------------------------------MAP-DATA----END-----------------
-
 }

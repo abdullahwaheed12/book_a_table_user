@@ -1,8 +1,6 @@
 import 'dart:async';
 
-
 import 'package:book_a_table/modules/home/view.dart';
-import 'package:book_a_table/utils/color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -46,14 +44,13 @@ class _SplashPageState extends State<SplashPage> {
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,  
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(
             'assets/logo.png',
             width: MediaQuery.of(context).size.width * .7,
           ),
-         
         ],
       ),
     ));

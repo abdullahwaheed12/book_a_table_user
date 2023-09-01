@@ -1,10 +1,7 @@
 import 'package:animation_wrappers/animations/faded_slide_animation.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'package:geolocator/geolocator.dart' as geo_locator;
 
 import '../utils/color.dart';
 import '../modules/home/logic.dart';
@@ -22,32 +19,35 @@ class _BookNowRestaurentListWidgetState
     extends State<BookNowRestaurentListWidget> {
   @override
   Widget build(BuildContext context) {
-
     return GetBuilder<BookNowLogic>(
         builder: (_bookNowLogic) => FutureBuilder<List<CustomDocument>>(
             future: _bookNowLogic.getRestaurentList(),
             builder: (context, snapshot) {
-              if (snapshot.hasData ) {
+              if (snapshot.hasData) {
                 var data = snapshot.data!;
-           
+
                 return FadedSlideAnimation(
                   child: SingleChildScrollView(
                     child: Wrap(
                       children: List.generate(data.length, (index) {
-                        
-                     
                         double avgRating = 0.0;
                         List.generate(
-                            data[index].restaurentDocumentSnapshot.get('ratings').length,
+                            data[index]
+                                .restaurentDocumentSnapshot
+                                .get('ratings')
+                                .length,
                             (innerIndex) => avgRating = avgRating +
-                                data[index].restaurentDocumentSnapshot.get('ratings')[innerIndex]);
-                            
+                                data[index]
+                                    .restaurentDocumentSnapshot
+                                    .get('ratings')[innerIndex]);
+
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 10),
                           child: InkWell(
                             onTap: () {
                               Get.to(RestaurantDetailPage(
-                                restaurantModel: data[index].restaurentDocumentSnapshot,
+                                restaurantModel:
+                                    data[index].restaurentDocumentSnapshot,
                               ));
                             },
                             child: Container(
@@ -62,7 +62,8 @@ class _BookNowRestaurentListWidgetState
                                   children: [
                                     ///---image
                                     Hero(
-                                      tag: '${data[index].restaurentShowList['image']}',
+                                      tag:
+                                          '${data[index].restaurentShowList['image']}',
                                       child: Material(
                                         color: Colors.transparent,
                                         child: Container(
@@ -74,10 +75,15 @@ class _BookNowRestaurentListWidgetState
                                           child: ClipRRect(
                                             borderRadius:
                                                 BorderRadius.circular(40),
-                                            child: data[index].restaurentShowList['image']==null? const Text(''): Image.network(
-                                              '${data[index].restaurentShowList['image']}',
-                                              fit: BoxFit.cover,
-                                            ),
+                                            child:
+                                                data[index].restaurentShowList[
+                                                            'image'] ==
+                                                        null
+                                                    ? const Text('')
+                                                    : Image.network(
+                                                        '${data[index].restaurentShowList['image']}',
+                                                        fit: BoxFit.cover,
+                                                      ),
                                           ),
                                         ),
                                       ),
@@ -97,7 +103,8 @@ class _BookNowRestaurentListWidgetState
                                               MainAxisAlignment.center,
                                           children: [
                                             ///---name
-                                            Text('${data[index].restaurentShowList['name']}',
+                                            Text(
+                                                '${data[index].restaurentShowList['name']}',
                                                 style: const TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 20,
@@ -131,7 +138,7 @@ class _BookNowRestaurentListWidgetState
                                                 ///---distance
                                                 Expanded(
                                                   child: Text(
-                                                    '${data[index].restaurentShowList['distance']  } km',
+                                                    '${data[index].restaurentShowList['distance']} km',
                                                   ),
                                                 ),
 
@@ -179,21 +186,24 @@ class _BookNowRestaurentListWidgetState
             }));
   }
 }
- bool isAC=false;
-  bool isTV=false;
-  bool isWifi=false;
-  bool isplay= false;
 
-  void setIsAC(bool ac){
-    isAC=ac;
-  }
+bool isAC = false;
+bool isTV = false;
+bool isWifi = false;
+bool isplay = false;
 
-  void setIsTV(bool tv){
-    isTV=tv;
-  }
-  void setIsWifi(bool wifi){
-    isWifi=wifi;
-  }
-  void setIsPlay(bool play){
-    isplay=play;
-  }
+void setIsAC(bool ac) {
+  isAC = ac;
+}
+
+void setIsTV(bool tv) {
+  isTV = tv;
+}
+
+void setIsWifi(bool wifi) {
+  isWifi = wifi;
+}
+
+void setIsPlay(bool play) {
+  isplay = play;
+}

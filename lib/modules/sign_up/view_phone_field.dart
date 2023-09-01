@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -33,7 +32,7 @@ class _PhoneSignUpViewState extends State<PhoneSignUpView>
   void initState() {
     // TODO: implement initState
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       Get.find<SignUpLogic>().updateOtpSendCheckerLogin(false);
       Get.find<SignUpLogic>().phoneController.clear();
       Get.find<SignUpLogic>().phoneNumber = null;
@@ -46,12 +45,14 @@ class _PhoneSignUpViewState extends State<PhoneSignUpView>
             }
           });
   }
-    @override
+
+  @override
   void dispose() {
-     Get.find<SignUpLogic>().loginTimerAnimationController!.dispose();
+    Get.find<SignUpLogic>().loginTimerAnimationController!.dispose();
     // TODO: implement dispose
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SignUpLogic>(
@@ -110,7 +111,8 @@ class _PhoneSignUpViewState extends State<PhoneSignUpView>
                             child: IntlPhoneField(
                               initialCountryCode: 'IN',
                               controller: _signUpLogic.phoneController,
-                              style: const TextStyle( fontFamily: 'Poppins',color: Colors.black),
+                              style: const TextStyle(
+                                  fontFamily: 'Poppins', color: Colors.black),
                               inputFormatters: [
                                 FilteringTextInputFormatter.allow(
                                     RegExp(r'[0-9]')),
@@ -143,7 +145,7 @@ class _PhoneSignUpViewState extends State<PhoneSignUpView>
                                 });
                                 log(phone.completeNumber);
                               },
-                              onCountryChanged: ( phone) {
+                              onCountryChanged: (phone) {
                                 _signUpLogic.updateOtpSendCheckerLogin(false);
                                 _signUpLogic.phoneController.clear();
                                 _signUpLogic.phoneNumber = null;
@@ -407,6 +409,7 @@ class _PhoneSignUpViewState extends State<PhoneSignUpView>
   }
 }
 
+// ignore: must_be_immutable
 class OtpTimer extends StatelessWidget {
   final state = Get.find<SignUpLogic>().state;
 
@@ -414,7 +417,8 @@ class OtpTimer extends StatelessWidget {
   double fontSize;
   Color timeColor = Colors.black;
 
-  OtpTimer(this.controller, this.fontSize, this.timeColor, {Key? key}) : super(key: key);
+  OtpTimer(this.controller, this.fontSize, this.timeColor, {Key? key})
+      : super(key: key);
 
   String get timerString {
     Duration duration = controller.duration! * controller.value;

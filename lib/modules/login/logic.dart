@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -49,6 +48,7 @@ class LoginLogic extends GetxController {
       },
       codeAutoRetrievalTimeout: (String verificationId) {},
     );
+    return null;
   }
 
   verifyOTP(BuildContext context, var otp, bool fromSignup) async {
@@ -88,7 +88,6 @@ class LoginLogic extends GetxController {
           'uid': user.uid,
         });
 
- 
         Get.find<GeneralController>().boxStorage.write('uid', user.uid);
         Get.find<GeneralController>().boxStorage.write('session', 'active');
         Get.find<GeneralController>().boxStorage.write('loginType', 'phone');

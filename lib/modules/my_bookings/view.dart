@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:animation_wrappers/animation_wrappers.dart';
-import 'package:book_a_table/modules/home/view.dart';
 import 'package:book_a_table/utils/text_style.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +9,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:skeleton_loader/skeleton_loader.dart';
 
 import '../../../controllers/general_controller.dart';
-import '../../../route_generator.dart';
 import '../../../utils/color.dart';
 
 import '../home/logic.dart';

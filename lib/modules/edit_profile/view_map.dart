@@ -4,7 +4,6 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:uuid/uuid.dart';
 
@@ -121,7 +120,8 @@ class _MapEditViewState extends State<MapEditView> {
                                 softWrap: true,
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
-                                style: const TextStyle( fontFamily: 'Poppins',
+                                style: const TextStyle(
+                                    fontFamily: 'Poppins',
                                     fontSize: 14,
                                     fontWeight: FontWeight.w500,
                                     color: customTextGreyColor),
@@ -157,7 +157,8 @@ class _MapEditViewState extends State<MapEditView> {
                       child: const Center(
                         child: Text(
                           'Pick This Location',
-                          style: TextStyle( fontFamily: 'Poppins',
+                          style: TextStyle(
+                              fontFamily: 'Poppins',
                               fontWeight: FontWeight.w800,
                               fontSize: 16,
                               color: Colors.white),

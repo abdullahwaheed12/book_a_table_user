@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -13,6 +12,7 @@ import '../../controllers/general_controller.dart';
 import '../../utils/color.dart';
 import 'logic.dart';
 import 'state.dart';
+
 class PhoneLoginView extends StatefulWidget {
   const PhoneLoginView({Key? key}) : super(key: key);
 
@@ -30,7 +30,7 @@ class _PhoneLoginViewState extends State<PhoneLoginView>
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       Get.find<LoginLogic>().updateOtpSendCheckerLogin(false);
       Get.find<LoginLogic>().phoneController.clear();
       Get.find<LoginLogic>().loginPhoneNumber = null;
@@ -54,15 +54,15 @@ class _PhoneLoginViewState extends State<PhoneLoginView>
         child: GetBuilder<GeneralController>(
           builder: (_generalController) => ModalProgressHUD(
             inAsyncCall: _generalController.formLoader!,
-            progressIndicator:  const CircularProgressIndicator(
+            progressIndicator: const CircularProgressIndicator(
               color: customThemeColor,
             ),
             child: Scaffold(
               appBar: AppBar(
                 backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                 elevation: 0,
-                leading:  GestureDetector(
-                  onTap: (){
+                leading: GestureDetector(
+                  onTap: () {
                     Get.back();
                   },
                   child: const Icon(
@@ -102,7 +102,8 @@ class _PhoneLoginViewState extends State<PhoneLoginView>
                             child: IntlPhoneField(
                               initialCountryCode: 'IN',
                               controller: _loginLogic.phoneController,
-                              style: const TextStyle( fontFamily: 'Poppins',color: Colors.black),
+                              style: const TextStyle(
+                                  fontFamily: 'Poppins', color: Colors.black),
                               inputFormatters: [
                                 FilteringTextInputFormatter.allow(
                                     RegExp(r'[0-9]')),
@@ -399,6 +400,7 @@ class _PhoneLoginViewState extends State<PhoneLoginView>
   }
 }
 
+// ignore: must_be_immutable
 class OtpTimer extends StatelessWidget {
   final state = Get.find<LoginLogic>().state;
 
@@ -406,7 +408,8 @@ class OtpTimer extends StatelessWidget {
   double fontSize;
   Color timeColor = Colors.black;
 
-  OtpTimer(this.controller, this.fontSize, this.timeColor, {Key? key}) : super(key: key);
+  OtpTimer(this.controller, this.fontSize, this.timeColor, {Key? key})
+      : super(key: key);
 
   String get timerString {
     Duration duration = controller.duration! * controller.value;

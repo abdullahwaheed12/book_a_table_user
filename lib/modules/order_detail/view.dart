@@ -13,6 +13,7 @@ import '../image_full_view/view.dart';
 import 'logic.dart';
 import 'state.dart';
 
+// ignore: must_be_immutable
 class OrderDetailPage extends StatefulWidget {
   OrderDetailPage({Key? key, this.orderModel}) : super(key: key);
   DocumentSnapshot? orderModel;
@@ -116,18 +117,18 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                   padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
                   child: Container(
                     decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                        // boxShadow: [
-                        //   BoxShadow(
-                        //     color: Colors.grey.withOpacity(0.5),
-                        //     blurRadius: 40,
-                        //     spreadRadius: 0,
-                        //     offset: const Offset(
-                        //         0, 22), // changes position of shadow
-                        //   ),
-                        // ]
-                        ),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                      // boxShadow: [
+                      //   BoxShadow(
+                      //     color: Colors.grey.withOpacity(0.5),
+                      //     blurRadius: 40,
+                      //     spreadRadius: 0,
+                      //     offset: const Offset(
+                      //         0, 22), // changes position of shadow
+                      //   ),
+                      // ]
+                    ),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 15, vertical: 10),
@@ -138,7 +139,8 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                             children: [
                               const Text('Take Away?',
                                   textAlign: TextAlign.center,
-                                  style: TextStyle( fontFamily: 'Poppins',
+                                  style: TextStyle(
+                                      fontFamily: 'Poppins',
                                       fontSize: 16,
                                       fontWeight: FontWeight.w800,
                                       color: AppColors.greenColor)),
@@ -150,7 +152,8 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                                       ? 'Yes'
                                       : 'No',
                                   textAlign: TextAlign.center,
-                                  style: const TextStyle( fontFamily: 'Poppins',
+                                  style: const TextStyle(
+                                      fontFamily: 'Poppins',
                                       fontSize: 16,
                                       fontWeight: FontWeight.w800,
                                       color: customTextGreyColor)),
@@ -159,7 +162,6 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                           const SizedBox(
                             height: 8,
                           ),
-                         
                         ],
                       ),
                     ),
@@ -329,7 +331,8 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                               children: [
                                 ///---image
                                 Hero(
-                                  tag: '${widget.orderModel!.get('product_list')[index]['image']}',
+                                  tag:
+                                      '${widget.orderModel!.get('product_list')[index]['image']}',
                                   child: Material(
                                     child: Container(
                                       height: 80,
@@ -339,10 +342,10 @@ class _OrderDetailPageState extends State<OrderDetailPage> {
                                           shape: BoxShape.circle),
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.circular(40),
-                                        child:  Image.network(
-                                                '${widget.orderModel!.get('product_list')[index]['image']}',
-                                                fit: BoxFit.cover,
-                                              ),
+                                        child: Image.network(
+                                          '${widget.orderModel!.get('product_list')[index]['image']}',
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
                                   ),

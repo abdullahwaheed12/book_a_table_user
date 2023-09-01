@@ -16,7 +16,6 @@ class _OnBoardingState extends State<OnBoarding> with TickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _animation;
 
-  @override
   int _current = 0;
 
   final CarouselController _controller = CarouselController();
@@ -169,19 +168,17 @@ class _OnBoardingState extends State<OnBoarding> with TickerProviderStateMixin {
                     //   },
                     // ));
                     if (isCompleted) {
-                          Get.find<GeneralController>()
-                                .boxStorage
-                                .write('welcomeDone', 'true');
+                      Get.find<GeneralController>()
+                          .boxStorage
+                          .write('welcomeDone', 'true');
                       Get.offAll(LoginPage());
-                      
-                    }else{
-                    _controller.nextPage();
-
+                    } else {
+                      _controller.nextPage();
                     }
                   },
-                  child:Text(isCompleted? 'Get Started':'Next') ,
+                  child: Text(isCompleted ? 'Get Started' : 'Next'),
                   style: ElevatedButton.styleFrom(
-                      primary: Color(0xffF28844),
+                      backgroundColor: Color(0xffF28844),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18.0),
                       )),
@@ -192,9 +189,9 @@ class _OnBoardingState extends State<OnBoarding> with TickerProviderStateMixin {
                 visible: !isCompleted,
                 child: InkWell(
                     onTap: () {
-                       Get.find<GeneralController>()
-                                .boxStorage
-                                .write('welcomeDone', 'true');
+                      Get.find<GeneralController>()
+                          .boxStorage
+                          .write('welcomeDone', 'true');
                       Get.offAll(LoginPage());
                     },
                     child: Text('Skip')),

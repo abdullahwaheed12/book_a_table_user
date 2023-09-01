@@ -27,7 +27,6 @@ class _MapPageState extends State<MapPage> {
   GoogleMapController? _controller;
   BitmapDescriptor? customIcon;
   bool isMapCreated = false;
-  String? _mapStyle;
   List<Marker> allMarkers = [];
 
   PageController? _pageController;
@@ -149,7 +148,9 @@ class _MapPageState extends State<MapPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          _title.length > 13 ? '${_title.substring(0,13)}...': _title ,
+                          _title.length > 13
+                              ? '${_title.substring(0, 13)}...'
+                              : _title,
                           softWrap: true,
                           maxLines: 2,
                           style: GoogleFonts.nunito(
@@ -221,15 +222,13 @@ class _MapPageState extends State<MapPage> {
                 ],
               );
             } else if (snapshot.hasData) {
-              var docList=snapshot.data!.docs;
+              var docList = snapshot.data!.docs;
               for (var element in docList) {
                 allSnapshot.add(element);
                 allMarkers.add(Marker(
                     onTap: () {
                       //-----------
-                        _pageController!
-                            .jumpToPage(docList.indexOf(element));
-                  
+                      _pageController!.jumpToPage(docList.indexOf(element));
                     },
                     icon: BitmapDescriptor.defaultMarkerWithHue(
                       BitmapDescriptor.hueRed,
@@ -267,9 +266,8 @@ class _MapPageState extends State<MapPage> {
                             },
                           )
                         : GoogleMap(
-                        
                             mapType: MapType.normal,
-                             initialCameraPosition: CameraPosition(
+                            initialCameraPosition: CameraPosition(
                                 target: LatLng(Get.find<HomeLogic>().latitude!,
                                     Get.find<HomeLogic>().longitude!),
                                 zoom: 13.0),

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
@@ -8,7 +7,6 @@ import '../../route_generator.dart';
 import '../../utils/color.dart';
 import 'logic.dart';
 import 'state.dart';
-import 'view_phone_login.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -34,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
         child: GetBuilder<GeneralController>(
           builder: (_generalController) => ModalProgressHUD(
             inAsyncCall: _generalController.formLoader!,
-            progressIndicator:  const CircularProgressIndicator(
+            progressIndicator: const CircularProgressIndicator(
               color: customThemeColor,
             ),
             child: Scaffold(
@@ -73,9 +71,9 @@ class _LoginPageState extends State<LoginPage> {
                               enabledBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(
                                       color: Colors.black.withOpacity(0.5))),
-                              focusedBorder:  const UnderlineInputBorder(
+                              focusedBorder: const UnderlineInputBorder(
                                   borderSide:
-                                       BorderSide(color: customThemeColor)),
+                                      BorderSide(color: customThemeColor)),
                               errorBorder: const UnderlineInputBorder(
                                   borderSide: BorderSide(color: Colors.red)),
                             ),
@@ -126,7 +124,7 @@ class _LoginPageState extends State<LoginPage> {
                               enabledBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(
                                       color: Colors.black.withOpacity(0.5))),
-                              focusedBorder:  const UnderlineInputBorder(
+                              focusedBorder: const UnderlineInputBorder(
                                   borderSide:
                                       BorderSide(color: customThemeColor)),
                               errorBorder: const UnderlineInputBorder(
@@ -180,7 +178,7 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                           ),
                         ),
-                         SizedBox(
+                        SizedBox(
                           height: MediaQuery.of(context).size.height * .03,
                         ),
                         Row(
@@ -200,7 +198,7 @@ class _LoginPageState extends State<LoginPage> {
                         SizedBox(
                           height: MediaQuery.of(context).size.height * .03,
                         ),
-                        
+
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -248,7 +246,7 @@ class _LoginPageState extends State<LoginPage> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                               const Icon(
+                              const Icon(
                                 Icons.phone,
                                 color: customThemeColor,
                               ),
@@ -266,24 +264,25 @@ class _LoginPageState extends State<LoginPage> {
                             Padding(
                               padding: const EdgeInsets.only(right: 15),
                               child: Align(
-                              alignment: Alignment.centerRight,
-                              child: InkWell(
-                                onTap: () {
-                                  _generalController.updateFormLoader(true);
-                                  _generalController.firebaseAuthentication
-                                      .signInWithGoogle();
-                                },
-                                child: Image.asset(
-                                  'assets/google.png',
-                                  height: 50,
-                                  width: 70,
-                                ),
-                              )),
+                                  alignment: Alignment.centerRight,
+                                  child: InkWell(
+                                    onTap: () {
+                                      _generalController.updateFormLoader(true);
+                                      _generalController.firebaseAuthentication
+                                          .signInWithGoogle();
+                                    },
+                                    child: Image.asset(
+                                      'assets/google.png',
+                                      height: 50,
+                                      width: 70,
+                                    ),
+                                  )),
                             ),
-                         
                           ],
                         ),
-                        SizedBox(height: 20,),
+                        SizedBox(
+                          height: 20,
+                        ),
                       ],
                     ),
                   ),

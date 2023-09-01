@@ -1,5 +1,3 @@
-
-import 'package:book_a_table/controllers/auth_controller.dart';
 import 'package:book_a_table/controllers/general_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -32,9 +30,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return GetBuilder<HomeLogic>(
       builder: (_homeLogic) => Scaffold(
-      
-        body: 
-        SizedBox(
+        body: SizedBox(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: Padding(
@@ -55,10 +51,12 @@ class _ProfilePageState extends State<ProfilePage> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(30, 0, 30, 0),
                         child: GestureDetector(
-                          onTap: (){
-                            Get.find<GeneralController>().firebaseAuthentication.signOut();
-                          },
-                          child: Icon(Icons.logout_rounded)),
+                            onTap: () {
+                              Get.find<GeneralController>()
+                                  .firebaseAuthentication
+                                  .signOut();
+                            },
+                            child: Icon(Icons.logout_rounded)),
                       ),
                     ],
                   ),
@@ -77,7 +75,6 @@ class _ProfilePageState extends State<ProfilePage> {
                           margin: const EdgeInsets.only(top: 7),
                           width: MediaQuery.of(context).size.width,
                           decoration: BoxDecoration(
-                             
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(20)),
                           child: Padding(
@@ -132,11 +129,11 @@ class _ProfilePageState extends State<ProfilePage> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          '${_homeLogic.currentUserData ?.get('name')}',
+                                          '${_homeLogic.currentUserData?.get('name')}',
                                           style: state.nameTextStyle,
                                         ),
                                         Text(
-                                          '${_homeLogic.currentUserData ?.get('email')}',
+                                          '${_homeLogic.currentUserData?.get('email')}',
                                           style: state.detailTextStyle,
                                         ),
                                         Divider(
@@ -193,7 +190,6 @@ class _ProfilePageState extends State<ProfilePage> {
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
                           color: Colors.white,
-                      
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Padding(
@@ -308,7 +304,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                   ),
 
-                  SizedBox(height: 20,)
+                  SizedBox(
+                    height: 20,
+                  )
                 ],
               )),
         ),
@@ -328,8 +326,8 @@ class _ProfilePageState extends State<ProfilePage> {
               decoration: BoxDecoration(
                   color: customThemeColor,
                   borderRadius: BorderRadius.circular(30)),
-              child:  Center(
-                child:  Text(
+              child: Center(
+                child: Text(
                   'Update',
                   style: kTopHeadingStyle.copyWith(color: Colors.black),
                 ),

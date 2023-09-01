@@ -181,12 +181,11 @@ class EditProfileLogic extends GetxController {
 
   requestLocationPermission(BuildContext context) async {
     if (Platform.isIOS) {
-      Map<Permission, PermissionStatus> statuses = await [
+      await [
         Permission.location,
         Permission.locationWhenInUse,
       ].request();
-      var status = await Permission.locationWhenInUse.request();
-      var granted = statuses;
+
       ServiceStatus serviceStatus = await Permission.location.serviceStatus;
       bool enabled = (serviceStatus == ServiceStatus.enabled);
 
@@ -325,5 +324,4 @@ class EditProfileLogic extends GetxController {
   }
 
   ///------------------------------------MAP-DATA----END-----------------
-
 }

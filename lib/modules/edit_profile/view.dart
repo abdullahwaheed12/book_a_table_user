@@ -1,17 +1,14 @@
 import 'dart:developer';
 import 'dart:io';
 
-
 import 'package:book_a_table/modules/edit_profile/view_map.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker_gallery_camera/image_picker_gallery_camera.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
-import 'package:intl_phone_field/phone_number.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import '../../controllers/general_controller.dart';
@@ -38,7 +35,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
     // TODO: implement initState
     super.initState();
     Get.find<EditProfileLogic>().requestLocationPermission(context);
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       Get.find<GeneralController>().updateFormLoader(false);
     });
     logic.setData(widget.userModel);
@@ -219,8 +216,9 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                     initialCountryCode: 'IN',
                                     controller:
                                         _editProfileLogic.phoneController,
-                                    style:
-                                        const TextStyle( fontFamily: 'Poppins',color: Colors.black),
+                                    style: const TextStyle(
+                                        fontFamily: 'Poppins',
+                                        color: Colors.black),
                                     inputFormatters: [
                                       FilteringTextInputFormatter.allow(
                                           RegExp(r'[0-9]')),
@@ -248,7 +246,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                     onChanged: (phone) {
                                       log(phone.completeNumber);
                                     },
-                                    onCountryChanged: ( phone) {
+                                    onCountryChanged: (phone) {
                                       _editProfileLogic.phoneController.clear();
                                       setState(() {});
                                       log('Country code changed to: ' +
@@ -379,19 +377,17 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         imageQuality: 10,
                         maxWidth: 400,
                         maxHeight: 600));
-                    if (userImagesList != null) {
-                      setState(() {
-                        Get.find<EditProfileLogic>().userImage =
-                            File(userImagesList[0].path);
-                      });
-                      log(userImagesList[0].path);
-                    }
+                    setState(() {
+                      Get.find<EditProfileLogic>().userImage =
+                          File(userImagesList[0].path);
+                    });
+                    log(userImagesList[0].path);
                   },
                   child: Text(
                     "Camera",
                     style: Theme.of(context)
                         .textTheme
-                        .headline5!
+                        .headlineSmall!
                         .copyWith(fontSize: 18),
                   )),
               CupertinoDialogAction(
@@ -409,19 +405,17 @@ class _EditProfilePageState extends State<EditProfilePage> {
                         imageQuality: 10,
                         maxWidth: 400,
                         maxHeight: 600));
-                    if (userImagesList != null) {
-                      setState(() {
-                        Get.find<EditProfileLogic>().userImage =
-                            File(userImagesList[0].path);
-                      });
-                      log(userImagesList[0].path);
-                    }
+                    setState(() {
+                      Get.find<EditProfileLogic>().userImage =
+                          File(userImagesList[0].path);
+                    });
+                    log(userImagesList[0].path);
                   },
                   child: Text(
                     "Gallery",
                     style: Theme.of(context)
                         .textTheme
-                        .headline5!
+                        .headlineSmall!
                         .copyWith(fontSize: 18),
                   )),
             ],

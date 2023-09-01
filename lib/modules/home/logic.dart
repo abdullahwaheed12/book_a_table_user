@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, unused_local_variable
 import 'dart:developer';
 import 'dart:io';
 
@@ -209,7 +209,7 @@ class HomeLogic extends GetxController {
 
   int? totalCartCount;
   getCartCount() async {
-    var a=Get.find<GeneralController>().boxStorage.read('uid');
+    var a = Get.find<GeneralController>().boxStorage.read('uid');
     print('-----> $a');
     QuerySnapshot query = await FirebaseFirestore.instance
         .collection('cart')
