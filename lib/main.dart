@@ -3,7 +3,6 @@ import 'dart:math' hide log;
 
 import 'package:book_a_table/controllers/general_controller.dart';
 import 'package:book_a_table/controllers/index_notifier.dart';
-import 'package:book_a_table/firebase_options.dart';
 import 'package:book_a_table/utils/theme.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -208,7 +207,7 @@ void showNotification(RemoteMessage message) {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await Firebase.initializeApp();
   await GetStorage.init();
 
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);

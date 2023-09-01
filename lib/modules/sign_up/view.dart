@@ -1,7 +1,6 @@
 import 'dart:developer';
 import 'dart:io';
 
-
 import 'package:book_a_table/modules/sign_up/view_map.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -67,8 +66,6 @@ class _SignUpPageState extends State<SignUpPage> {
                         InkWell(
                           onTap: () {
                             imagePickerDialog(context);
-                      
-                      
                           },
                           child: Container(
                             height: MediaQuery.of(context).size.height * .1,
@@ -277,10 +274,11 @@ class _SignUpPageState extends State<SignUpPage> {
                             onTap: () async {
                               _generalController.focusOut(context);
                               if (_signUpFormKey.currentState!.validate()) {
-                              
                                 if (_signUpLogic.userImage != null) {
-                               
-                                  Get.to(const PhoneSignUpView());
+                                  Get.find<GeneralController>()
+                                      .firebaseAuthentication
+                                      .signUp();
+                                  // Get.to(const PhoneSignUpView());
                                 } else {
                                   showDialog(
                                       context: context,
@@ -324,7 +322,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),
                           ),
                         ),
-                      
+
                         SizedBox(
                           height: MediaQuery.of(context).size.height * .04,
                         ),
@@ -389,7 +387,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     "Camera",
                     style: Theme.of(context)
                         .textTheme
-                        .headline5!
+                        .headlineSmall!
                         .copyWith(fontSize: 18),
                   )),
               CupertinoDialogAction(
@@ -408,7 +406,6 @@ class _SignUpPageState extends State<SignUpPage> {
                         maxWidth: 400,
                         maxHeight: 600));
                     setState(() {
-                     
                       Get.find<SignUpLogic>().userImage =
                           File(userImagesList[0].path);
                     });
@@ -418,12 +415,11 @@ class _SignUpPageState extends State<SignUpPage> {
                     "Gallery",
                     style: Theme.of(context)
                         .textTheme
-                        .headline5!
+                        .headlineSmall!
                         .copyWith(fontSize: 18),
                   )),
             ],
           );
         });
   }
-
 }
