@@ -50,21 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDkkB0UASWnnHvG2mi6lwe6FQmXXsvkC-A',
-    appId: '1:797481843131:android:ef92841e3008cbb6cb6c9e',
-    messagingSenderId: '797481843131',
-    projectId: 'book-a-bite-practice',
-    storageBucket: 'book-a-bite-practice.appspot.com',
+    apiKey: 'AIzaSyBL_lf3xAla57Mh5dO-mpfuVsWikWTPFTc',
+    appId: '1:625251647889:android:f60bad48ec882994a21a30',
+    messagingSenderId: '625251647889',
+    projectId: 'book-a-table-c928a',
+    storageBucket: 'book-a-table-c928a.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAGpVD1ej7txHqoI9pjWtY9c2jtp-ldMzA',
-    appId: '1:797481843131:ios:d3dd9fe56aeeda0dcb6c9e',
-    messagingSenderId: '797481843131',
-    projectId: 'book-a-bite-practice',
-    storageBucket: 'book-a-bite-practice.appspot.com',
-    iosClientId:
-        '797481843131-iefotipaje2qchj2gm3tbendubhu0qqh.apps.googleusercontent.com',
-    iosBundleId: 'com.bookabite.bookABiteUser',
+    apiKey: 'AIzaSyDK2Dw5jVebVq065uxHUYiWY3_sGWgNBZ8',
+    appId: '1:625251647889:ios:cc233d783fcc110ea21a30',
+    messagingSenderId: '625251647889',
+    projectId: 'book-a-table-c928a',
+    storageBucket: 'book-a-table-c928a.appspot.com',
+    iosClientId: '625251647889-ee91r8t95poc1a5f8bali7h5l8gqfm2s.apps.googleusercontent.com',
+    iosBundleId: 'com.example.bookATable',
   );
 }

@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "625251647889",
+    "project_id": "book-a-table-c928a",
+    "storage_bucket": "book-a-table-c928a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:625251647889:android:f60bad48ec882994a21a30",
+        "android_client_info": {
+          "package_name": "com.example.book_a_table"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "625251647889-19lqtvti7g7sg0qo8ftcv10is3487sa0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBL_lf3xAla57Mh5dO-mpfuVsWikWTPFTc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "625251647889-19lqtvti7g7sg0qo8ftcv10is3487sa0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "625251647889-ee91r8t95poc1a5f8bali7h5l8gqfm2s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.bookATable"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
