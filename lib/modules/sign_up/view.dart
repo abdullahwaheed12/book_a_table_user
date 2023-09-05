@@ -13,7 +13,6 @@ import '../../utils/color.dart';
 import '../../widgets/custom_dialog.dart';
 import 'logic.dart';
 import 'state.dart';
-import 'view_phone_field.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);

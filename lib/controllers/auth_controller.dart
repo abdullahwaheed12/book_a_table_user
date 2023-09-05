@@ -1,4 +1,3 @@
-
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -14,7 +13,6 @@ import '../utils/color.dart';
 import 'general_controller.dart';
 
 class FirebaseAuthentication {
-
   void signInWithGoogle() async {
     try {
       // Trigger the authentication flow
@@ -71,6 +69,7 @@ class FirebaseAuthentication {
       // Once signed in, return the UserCredential
       // return await FirebaseAuth.instance.signInWithCredential(credential);
     } catch (e) {
+      print(e);
       Get.find<GeneralController>().updateFormLoader(false);
     }
   }
@@ -83,9 +82,14 @@ class FirebaseAuthentication {
         password: Get.find<LoginLogic>().passwordController.text,
       ))
               .user;
-            FirebaseFirestore.instance.collection('users').where('email',isEqualTo:  Get.find<LoginLogic>().emailController.text).get().then((value) {
-              user?.updateDisplayName(value.docs[0].get('name')) ;
-            });
+      FirebaseFirestore.instance
+          .collection('users')
+          .where('email',
+              isEqualTo: Get.find<LoginLogic>().emailController.text)
+          .get()
+          .then((value) {
+        user?.updateDisplayName(value.docs[0].get('name'));
+      });
       Get.find<GeneralController>().updateFormLoader(false);
       if (user != null) {
         log(user.uid.toString());
@@ -93,14 +97,13 @@ class FirebaseAuthentication {
             .boxStorage
             .write('uid', user.uid.toString());
         Get.find<GeneralController>()
-          .boxStorage
-          .write('userName', user.displayName ?? 'annonymus').
-        
-          then((value) {
-            print('complete ');
-          }).catchError((value){
-            print('error ');
-          });   
+            .boxStorage
+            .write('userName', user.displayName ?? 'annonymus')
+            .then((value) {
+          print('complete ');
+        }).catchError((value) {
+          print('error ');
+        });
         log('user exist');
         Get.find<GeneralController>().boxStorage.write('session', 'active');
 
@@ -130,7 +133,8 @@ class FirebaseAuthentication {
   Future<bool> signUp() async {
     try {
       print('email -----> ${Get.find<SignUpLogic>().emailController.text}');
-      print('password -----> ${Get.find<SignUpLogic>().passwordController.text}');
+      print(
+          'password -----> ${Get.find<SignUpLogic>().passwordController.text}');
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
               email: Get.find<SignUpLogic>().emailController.text,
@@ -138,19 +142,17 @@ class FirebaseAuthentication {
           .then((user) {
         Get.find<GeneralController>().boxStorage.write('uid', user.user!.uid);
         Get.find<GeneralController>()
-          .boxStorage
-          .write('userName', Get.find<SignUpLogic>().nameController.text);
+            .boxStorage
+            .write('userName', Get.find<SignUpLogic>().nameController.text);
         _firestore.collection('users').doc(user.user!.uid).set({
           'name': Get.find<SignUpLogic>().nameController.text,
           'phone': Get.find<SignUpLogic>().phoneNumber,
           'address': Get.find<SignUpLogic>().addressController.text,
-      
           'image': Get.find<SignUpLogic>().downloadURL ?? '',
           'email': Get.find<SignUpLogic>().emailController.text,
           'role': 'customer',
           'uid': user.user!.uid,
         });
-   
       });
       Get.find<GeneralController>().updateFormLoader(false);
       Get.find<GeneralController>().boxStorage.write('session', 'active');
@@ -173,7 +175,7 @@ class FirebaseAuthentication {
         margin: const EdgeInsets.all(15),
       );
       log('exception while sign up process ');
-      log(e.message??'');
+      log(e.message ?? '');
       return false;
     }
   }
