@@ -291,6 +291,7 @@ class _PaymentPageState extends State<PaymentPage> {
 
                                   customPaymentDialog(
                                       context, widget.coupanDocumentSnapshot);
+
                                   /*var response = await StripeService.payWithNewCard(
                                       amount: '${Get.find<CartLogic>().grandTotal}',
                                       currency: 'USD',
@@ -452,7 +453,27 @@ class _PaymentPageState extends State<PaymentPage> {
                                       log('CardExpiry--->>${documentSnapshot.get('card_expiry_year')}');
                                       log('CardCVC--->>${documentSnapshot.get('card_cvc')}');
                                       //!--------------------
+                                      // log('Token-->>${token.tokenId}');
+                                      Get.find<PaymentLogic>().paymentToken =
+                                          'we535dgd5443dfgdf';
+                                      Get.find<PaymentLogic>().update();
+                                      // customProceedDialog(context1);
 
+                                      Get.find<GeneralController>()
+                                          .updateFormLoader(false);
+
+                                      if (coupanDocumentSnapshot != null) {
+                                        var updageCoupanUsage = int.parse(
+                                                coupanDocumentSnapshot
+                                                    .get('usageLimit')) -
+                                            1;
+                                        await coupanDocumentSnapshot.reference
+                                            .set({
+                                          'usageLimit': updageCoupanUsage
+                                        }, SetOptions(merge: true));
+                                      }
+                                      Get.find<GeneralController>()
+                                          .updateFormLoader(false);
                                       //----------------------------
                                       // StripePayment.createTokenWithCard(CreditCard(
                                       //         expYear: 20 +
@@ -734,6 +755,66 @@ class _PaymentPageState extends State<PaymentPage> {
                                       log('CardExpiry--->>${Get.find<PaymentLogic>().cardExpiryController.text.toString().substring(0, 2)}');
                                       log('CardExpiry--->>${Get.find<PaymentLogic>().cardExpiryController.text.toString().substring(3, 5)}');
                                       log('CardCVC--->>${Get.find<PaymentLogic>().cardCVCController.text}');
+
+                                      // log('Token-->>${token.tokenId}');
+
+                                      Get.find<PaymentLogic>().paymentToken =
+                                          'asdfasdr3344sdf';
+                                      Get.find<PaymentLogic>().update();
+                                      FirebaseFirestore.instance
+                                          .collection('credit_cards')
+                                          .doc()
+                                          .set({
+                                        'uid': Get.find<GeneralController>()
+                                            .boxStorage
+                                            .read('uid'),
+                                        'card_number': Get.find<PaymentLogic>()
+                                            .cardNumberController
+                                            .text
+                                            .toString()
+                                            .replaceAll(' ', ''),
+                                        'card_expiry_month':
+                                            Get.find<PaymentLogic>()
+                                                .cardExpiryController
+                                                .text
+                                                .toString()
+                                                .substring(0, 2),
+                                        'card_expiry_year':
+                                            Get.find<PaymentLogic>()
+                                                .cardExpiryController
+                                                .text
+                                                .toString()
+                                                .substring(3, 5),
+                                        'card_cvc': Get.find<PaymentLogic>()
+                                            .cardCVCController
+                                            .text
+                                            .toString(),
+                                      });
+
+                                      Get.find<GeneralController>()
+                                          .updateFormLoader(false);
+                                      // customProceedDialog(context1);
+                                      // var response =
+                                      //     await StripeService.createCharge(
+                                      //         token.tokenId!,
+                                      //         Get.find<CartLogic>()
+                                      //             .grandTotal!
+                                      //             .toPrecision(2),
+                                      //         'USD',
+                                      //         context1);
+
+                                      if (coupanDocumentSnapshot != null) {
+                                        var updageCoupanUsage = int.parse(
+                                                coupanDocumentSnapshot
+                                                    .get('usageLimit')) -
+                                            1;
+                                        print(
+                                            '111111111111 ${updageCoupanUsage}');
+                                        await coupanDocumentSnapshot.reference
+                                            .set({
+                                          'usageLimit': updageCoupanUsage
+                                        }, SetOptions(merge: true));
+                                      }
                                       // StripePayment.createTokenWithCard(CreditCard(
                                       //         expYear: 20 +
                                       //             int.parse(
